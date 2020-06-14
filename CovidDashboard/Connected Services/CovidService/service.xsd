@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/CovidServiceLibrary.DataContract" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/CovidServiceLibrary.DataContract.Parameters" />
+  <xs:element name="GetGlobalCases">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGlobalCasesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CovidServiceLibrary.DataContract" minOccurs="0" name="GetGlobalCasesResult" nillable="true" type="q1:Global" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByCountry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CovidServiceLibrary.DataContract.Parameters" minOccurs="0" name="parameters" nillable="true" type="q2:GetByCountryLiveParamters" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByCountryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CovidServiceLibrary.DataContract" minOccurs="0" name="GetByCountryResult" nillable="true" type="q3:ArrayOfCountryCaseByDate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCountries">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCountriesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CovidServiceLibrary.DataContract" minOccurs="0" name="GetCountriesResult" nillable="true" type="q4:ArrayOfCountry" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

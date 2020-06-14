@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e7d7981c-fcd6-4f5d-a50d-24f51bab1ba7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/CovidServiceLibrary/CovidService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ebc74279-24db-4913-be64-e0eca502a5dd" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/CovidServiceLibrary/CovidService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="5ef91ae6-450e-4f86-baaf-1c92721c48b2" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/CovidServiceLibrary/CovidService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="10ea7240-2e8c-49a0-ad29-ffd46eb9bdf4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/CovidServiceLibrary/CovidService/mex" />
+    <MetadataFile FileName="CovidServiceLibrary.DataContract.xsd" MetadataType="Schema" ID="f4975522-1342-465f-b0f3-ed30a3d80f9e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/CovidServiceLibrary/CovidService/mex" />
+    <MetadataFile FileName="CovidServiceLibrary.DataContract.Parameters.xsd" MetadataType="Schema" ID="dd1a54ff-e79e-4d95-9ae3-63edad652947" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/CovidServiceLibrary/CovidService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
