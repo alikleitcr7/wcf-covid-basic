@@ -17,6 +17,7 @@ namespace CovidDashboard
         private const string DATE_FORMAT = "yyyy-MM-dd";
 
         private readonly ICovidService _client;
+
         public Form1()
         {
             InitializeComponent();
@@ -59,11 +60,6 @@ namespace CovidDashboard
 
         }
 
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             PopulateSummary();
@@ -71,42 +67,46 @@ namespace CovidDashboard
 
         private void PopulateSummary()
         {
-            var task = Task.Factory.StartNew(() => _client.GetGlobalCases());
+            SetDashboardLoading();
 
-            task.ContinueWith(r =>
+            try
             {
-                if (r.IsCompleted)
+                var task = Task.Factory.StartNew(() => _client.GetGlobalCases());
+
+                task.ContinueWith(r =>
                 {
-                    GlobalCases summary = task.Result;
-
-                    if (summary != null)
+                    if (r.IsCompleted)
                     {
-                        Action setFinished = () =>
+                        GlobalCases summary = task.Result;
+
+                        if (summary != null)
                         {
+                            Action setFinished = () =>
+                            {
+                                SetDashboardNumbers(summary);
+                            };
 
-                            SetDashboardNumbers(summary);
-                            //label_NewConfirmed.Text = summary.NewConfirmed.ToString("n");
-                            //label_TotalConfirmed.Text = summary.TotalConfirmed.ToString("n");
-                            //label_NewDeaths.Text = summary.NewDeaths.ToString("n");
-                            //label_TotalDeaths.Text = summary.TotalDeaths.ToString("n");
-                            //label_NewRecovered.Text = summary.NewRecovered.ToString("n");
-                            //label_TotalRecovered.Text = summary.TotalRecovered.ToString("n");
-                        };
-
-                        Invoke(setFinished);
+                            Invoke(setFinished);
+                        }
                     }
-                }
-            });
+                });
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong");
+                SetDashboardNumbers(0, 0, 0, 0, 0, 0, DateTime.Now);
+            }
         }
 
-        public void SetDashboardNumbers(GlobalCases globalCases)
+        private void SetDashboardNumbers(GlobalCases globalCases)
         {
             Global global = globalCases.Global;
 
             SetDashboardNumbers(global.NewConfirmed, global.TotalConfirmed, global.NewDeaths, global.TotalDeaths, global.NewRecovered, global.TotalRecovered, globalCases.Date);
         }
 
-        public void SetDashboardNumbers(CountryCaseByDate latest, CountryCaseByDate before)
+        private void SetDashboardNumbers(CountryCaseByDate latest, CountryCaseByDate before)
         {
             int newConfirmed = 0;
             int newDeath = 0;
@@ -126,7 +126,7 @@ namespace CovidDashboard
             SetDashboardNumbers(newConfirmed, confirmed, newDeath, deaths, newRecovered, recovered, latest.Date);
         }
 
-        public void SetDashboardNumbers(int newConfirmed, int totalConfirmed, int newDeath, int totalDeath, int newRecovered, int totalRecovered, DateTime latestDate)
+        private void SetDashboardNumbers(int newConfirmed, int totalConfirmed, int newDeath, int totalDeath, int newRecovered, int totalRecovered, DateTime latestDate)
         {
             label_NewConfirmed.Text = newConfirmed.ToString("n");
             label_TotalConfirmed.Text = totalConfirmed.ToString("n");
@@ -135,6 +135,17 @@ namespace CovidDashboard
             label_NewRecovered.Text = newRecovered.ToString("n");
             label_TotalRecovered.Text = totalRecovered.ToString("n");
             label_LatestUpdatedDate.Text = "Last Updated on " + latestDate.ToShortDateString();
+        }
+
+        private void SetDashboardLoading()
+        {
+            label_NewConfirmed.Text = "---";
+            label_TotalConfirmed.Text = "---";
+            label_NewDeaths.Text = "---";
+            label_TotalDeaths.Text = "---";
+            label_NewRecovered.Text = "---";
+            label_TotalRecovered.Text = "---";
+            label_LatestUpdatedDate.Text = "---";
         }
 
         private void ComboBox_Countries_SelectedIndexChanged(object sender, EventArgs e)
@@ -155,6 +166,7 @@ namespace CovidDashboard
             button_Search.Text = "Fetching...";
             button_Search.Enabled = false;
 
+            button_Reset.Visible = true;
 
             Action endLoading = () =>
             {
@@ -199,10 +211,12 @@ namespace CovidDashboard
                                     SetDashboardNumbers(cases[0], cases.Count > 1 ? cases[1] : null);
                                 }
 
-                                var bindingSource1 = new BindingSource();
-                                bindingSource1.DataSource = cases;
+                                BindingSource bindingSource = new BindingSource
+                                {
+                                    DataSource = cases
+                                };
 
-                                listBox_Results.DataSource = bindingSource1.DataSource;
+                                listBox_Results.DataSource = bindingSource.DataSource;
                                 listBox_Results.DisplayMember = "DisplayMessage";
 
                                 endLoading();
@@ -226,7 +240,21 @@ namespace CovidDashboard
 
         }
 
-        public class CountryCaseByDateViewModel : CountryCaseByDate
+        private void Button_Reset_Click(object sender, EventArgs e)
+        {
+            button_Reset.Visible = false;
+
+            PopulateSummary();
+
+            BindingSource bindingSource = new BindingSource
+            {
+                DataSource = new List<CountryCaseByDate>()
+            };
+
+            listBox_Results.DataSource = bindingSource.DataSource;
+        }
+
+        private class CountryCaseByDateViewModel : CountryCaseByDate
         {
             public string DisplayMessage
             {

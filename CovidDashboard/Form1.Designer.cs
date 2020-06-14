@@ -41,14 +41,15 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label_NewConfirmed = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label_TotalConfirmed = new System.Windows.Forms.Label();
-            this.label_NewDeaths = new System.Windows.Forms.Label();
-            this.label_TotalDeaths = new System.Windows.Forms.Label();
-            this.label_NewRecovered = new System.Windows.Forms.Label();
             this.label_TotalRecovered = new System.Windows.Forms.Label();
+            this.label_NewRecovered = new System.Windows.Forms.Label();
+            this.label_TotalDeaths = new System.Windows.Forms.Label();
+            this.label_NewDeaths = new System.Windows.Forms.Label();
+            this.label_TotalConfirmed = new System.Windows.Forms.Label();
             this.listBox_Results = new System.Windows.Forms.ListBox();
             this.button_Search = new System.Windows.Forms.Button();
             this.label_LatestUpdatedDate = new System.Windows.Forms.Label();
+            this.button_Reset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,7 +70,6 @@
             this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Countries";
-            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // DisplayMessage
             // 
@@ -79,7 +79,6 @@
             this.DisplayMessage.Size = new System.Drawing.Size(10, 13);
             this.DisplayMessage.TabIndex = 1;
             this.DisplayMessage.Text = "-";
-            this.DisplayMessage.Click += new System.EventHandler(this.Label1_Click);
             // 
             // dateTimePicker_From
             // 
@@ -96,7 +95,6 @@
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "From Date";
-            this.label2.Click += new System.EventHandler(this.Label1_Click);
             // 
             // label4
             // 
@@ -188,35 +186,15 @@
             this.panel1.Size = new System.Drawing.Size(932, 85);
             this.panel1.TabIndex = 4;
             // 
-            // label_TotalConfirmed
+            // label_TotalRecovered
             // 
-            this.label_TotalConfirmed.AutoSize = true;
-            this.label_TotalConfirmed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_TotalConfirmed.Location = new System.Drawing.Point(177, 50);
-            this.label_TotalConfirmed.Name = "label_TotalConfirmed";
-            this.label_TotalConfirmed.Size = new System.Drawing.Size(14, 20);
-            this.label_TotalConfirmed.TabIndex = 3;
-            this.label_TotalConfirmed.Text = "-";
-            // 
-            // label_NewDeaths
-            // 
-            this.label_NewDeaths.AutoSize = true;
-            this.label_NewDeaths.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_NewDeaths.Location = new System.Drawing.Point(340, 50);
-            this.label_NewDeaths.Name = "label_NewDeaths";
-            this.label_NewDeaths.Size = new System.Drawing.Size(14, 20);
-            this.label_NewDeaths.TabIndex = 3;
-            this.label_NewDeaths.Text = "-";
-            // 
-            // label_TotalDeaths
-            // 
-            this.label_TotalDeaths.AutoSize = true;
-            this.label_TotalDeaths.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_TotalDeaths.Location = new System.Drawing.Point(482, 50);
-            this.label_TotalDeaths.Name = "label_TotalDeaths";
-            this.label_TotalDeaths.Size = new System.Drawing.Size(14, 20);
-            this.label_TotalDeaths.TabIndex = 3;
-            this.label_TotalDeaths.Text = "-";
+            this.label_TotalRecovered.AutoSize = true;
+            this.label_TotalRecovered.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_TotalRecovered.Location = new System.Drawing.Point(793, 50);
+            this.label_TotalRecovered.Name = "label_TotalRecovered";
+            this.label_TotalRecovered.Size = new System.Drawing.Size(14, 20);
+            this.label_TotalRecovered.TabIndex = 3;
+            this.label_TotalRecovered.Text = "-";
             // 
             // label_NewRecovered
             // 
@@ -228,15 +206,35 @@
             this.label_NewRecovered.TabIndex = 3;
             this.label_NewRecovered.Text = "-";
             // 
-            // label_TotalRecovered
+            // label_TotalDeaths
             // 
-            this.label_TotalRecovered.AutoSize = true;
-            this.label_TotalRecovered.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_TotalRecovered.Location = new System.Drawing.Point(793, 50);
-            this.label_TotalRecovered.Name = "label_TotalRecovered";
-            this.label_TotalRecovered.Size = new System.Drawing.Size(14, 20);
-            this.label_TotalRecovered.TabIndex = 3;
-            this.label_TotalRecovered.Text = "-";
+            this.label_TotalDeaths.AutoSize = true;
+            this.label_TotalDeaths.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_TotalDeaths.Location = new System.Drawing.Point(482, 50);
+            this.label_TotalDeaths.Name = "label_TotalDeaths";
+            this.label_TotalDeaths.Size = new System.Drawing.Size(14, 20);
+            this.label_TotalDeaths.TabIndex = 3;
+            this.label_TotalDeaths.Text = "-";
+            // 
+            // label_NewDeaths
+            // 
+            this.label_NewDeaths.AutoSize = true;
+            this.label_NewDeaths.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_NewDeaths.Location = new System.Drawing.Point(340, 50);
+            this.label_NewDeaths.Name = "label_NewDeaths";
+            this.label_NewDeaths.Size = new System.Drawing.Size(14, 20);
+            this.label_NewDeaths.TabIndex = 3;
+            this.label_NewDeaths.Text = "-";
+            // 
+            // label_TotalConfirmed
+            // 
+            this.label_TotalConfirmed.AutoSize = true;
+            this.label_TotalConfirmed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_TotalConfirmed.Location = new System.Drawing.Point(177, 50);
+            this.label_TotalConfirmed.Name = "label_TotalConfirmed";
+            this.label_TotalConfirmed.Size = new System.Drawing.Size(14, 20);
+            this.label_TotalConfirmed.TabIndex = 3;
+            this.label_TotalConfirmed.Text = "-";
             // 
             // listBox_Results
             // 
@@ -264,7 +262,17 @@
             this.label_LatestUpdatedDate.Size = new System.Drawing.Size(10, 13);
             this.label_LatestUpdatedDate.TabIndex = 1;
             this.label_LatestUpdatedDate.Text = "-";
-            this.label_LatestUpdatedDate.Click += new System.EventHandler(this.Label1_Click);
+            // 
+            // button_Reset
+            // 
+            this.button_Reset.Location = new System.Drawing.Point(457, 67);
+            this.button_Reset.Name = "button_Reset";
+            this.button_Reset.Size = new System.Drawing.Size(75, 23);
+            this.button_Reset.TabIndex = 6;
+            this.button_Reset.Text = "Reset";
+            this.button_Reset.UseVisualStyleBackColor = true;
+            this.button_Reset.Visible = false;
+            this.button_Reset.Click += new System.EventHandler(this.Button_Reset_Click);
             // 
             // Form1
             // 
@@ -272,6 +280,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(982, 497);
+            this.Controls.Add(this.button_Reset);
             this.Controls.Add(this.button_Search);
             this.Controls.Add(this.listBox_Results);
             this.Controls.Add(this.panel1);
@@ -314,6 +323,7 @@
         private System.Windows.Forms.ListBox listBox_Results;
         private System.Windows.Forms.Button button_Search;
         private System.Windows.Forms.Label label_LatestUpdatedDate;
+        private System.Windows.Forms.Button button_Reset;
     }
 }
 
