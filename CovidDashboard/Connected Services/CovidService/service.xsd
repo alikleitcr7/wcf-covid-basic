@@ -10,7 +10,7 @@
   <xs:element name="GetGlobalCasesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CovidServiceLibrary.DataContract" minOccurs="0" name="GetGlobalCasesResult" nillable="true" type="q1:Global" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CovidServiceLibrary.DataContract" minOccurs="0" name="GetGlobalCasesResult" nillable="true" type="q1:GlobalCases" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -78,7 +78,7 @@
     <None Include="Connected Services\CovidService\CovidDashboard.CovidService.CountryCaseByDate.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CovidService\CovidDashboard.CovidService.Global.datasource">
+    <None Include="Connected Services\CovidService\CovidDashboard.CovidService.GlobalCases.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\CovidService\CovidServiceLibrary.DataContract.Parameters.xsd">

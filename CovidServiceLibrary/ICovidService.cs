@@ -10,7 +10,7 @@ namespace CovidServiceLibrary
     public interface ICovidService
     {
         [OperationContract]
-        Task<Global> GetGlobalCases();
+        Task<GlobalCases> GetGlobalCases();
 
         [OperationContract]
         Task<List<CountryCaseByDate>> GetByCountry(GetByCountryLiveParamters parameters);

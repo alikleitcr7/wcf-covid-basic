@@ -15,6 +15,67 @@ namespace CovidDashboard.CovidService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GlobalCases", Namespace="http://schemas.datacontract.org/2004/07/CovidServiceLibrary.DataContract")]
+    [System.SerializableAttribute()]
+    public partial class GlobalCases : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CovidDashboard.CovidService.Global GlobalField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((this.DateField.Equals(value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CovidDashboard.CovidService.Global Global {
+            get {
+                return this.GlobalField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GlobalField, value) != true)) {
+                    this.GlobalField = value;
+                    this.RaisePropertyChanged("Global");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Global", Namespace="http://schemas.datacontract.org/2004/07/CovidServiceLibrary.DataContract")]
     [System.SerializableAttribute()]
     public partial class Global : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -519,7 +580,7 @@ namespace CovidDashboard.CovidService {
     public interface ICovidService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICovidService/GetGlobalCases", ReplyAction="http://tempuri.org/ICovidService/GetGlobalCasesResponse")]
-        CovidDashboard.CovidService.Global GetGlobalCases();
+        CovidDashboard.CovidService.GlobalCases GetGlobalCases();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICovidService/GetByCountry", ReplyAction="http://tempuri.org/ICovidService/GetByCountryResponse")]
         System.Collections.Generic.List<CovidDashboard.CovidService.CountryCaseByDate> GetByCountry(CovidDashboard.CovidService.GetByCountryLiveParamters parameters);
@@ -555,7 +616,7 @@ namespace CovidDashboard.CovidService {
                 base(binding, remoteAddress) {
         }
         
-        public CovidDashboard.CovidService.Global GetGlobalCases() {
+        public CovidDashboard.CovidService.GlobalCases GetGlobalCases() {
             return base.Channel.GetGlobalCases();
         }
         

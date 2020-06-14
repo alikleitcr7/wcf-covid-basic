@@ -77,7 +77,7 @@ namespace CovidDashboard
             {
                 if (r.IsCompleted)
                 {
-                    Global summary = task.Result;
+                    GlobalCases summary = task.Result;
 
                     if (summary != null)
                     {
@@ -99,10 +99,11 @@ namespace CovidDashboard
             });
         }
 
-
-        public void SetDashboardNumbers(Global global)
+        public void SetDashboardNumbers(GlobalCases globalCases)
         {
-            SetDashboardNumbers(global.NewConfirmed, global.TotalConfirmed, global.NewDeaths, global.TotalDeaths, global.NewRecovered, global.TotalRecovered);
+            Global global = globalCases.Global;
+
+            SetDashboardNumbers(global.NewConfirmed, global.TotalConfirmed, global.NewDeaths, global.TotalDeaths, global.NewRecovered, global.TotalRecovered, globalCases.Date);
         }
 
         public void SetDashboardNumbers(CountryCaseByDate latest, CountryCaseByDate before)
@@ -122,10 +123,10 @@ namespace CovidDashboard
                 newRecovered = recovered - before.Recovered;
             }
 
-            SetDashboardNumbers(newConfirmed, confirmed, newDeath, deaths, newRecovered, recovered);
+            SetDashboardNumbers(newConfirmed, confirmed, newDeath, deaths, newRecovered, recovered, latest.Date);
         }
 
-        public void SetDashboardNumbers(int newConfirmed, int totalConfirmed, int newDeath, int totalDeath, int newRecovered, int totalRecovered)
+        public void SetDashboardNumbers(int newConfirmed, int totalConfirmed, int newDeath, int totalDeath, int newRecovered, int totalRecovered, DateTime latestDate)
         {
             label_NewConfirmed.Text = newConfirmed.ToString("n");
             label_TotalConfirmed.Text = totalConfirmed.ToString("n");
@@ -133,6 +134,7 @@ namespace CovidDashboard
             label_TotalDeaths.Text = totalDeath.ToString("n");
             label_NewRecovered.Text = newRecovered.ToString("n");
             label_TotalRecovered.Text = totalRecovered.ToString("n");
+            label_LatestUpdatedDate.Text = "Last Updated on " + latestDate.ToShortDateString();
         }
 
         private void ComboBox_Countries_SelectedIndexChanged(object sender, EventArgs e)

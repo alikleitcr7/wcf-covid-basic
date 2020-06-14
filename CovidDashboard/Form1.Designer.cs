@@ -48,6 +48,7 @@
             this.label_TotalRecovered = new System.Windows.Forms.Label();
             this.listBox_Results = new System.Windows.Forms.ListBox();
             this.button_Search = new System.Windows.Forms.Button();
+            this.label_LatestUpdatedDate = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +74,7 @@
             // DisplayMessage
             // 
             this.DisplayMessage.AutoSize = true;
-            this.DisplayMessage.Location = new System.Drawing.Point(12, 9);
+            this.DisplayMessage.Location = new System.Drawing.Point(12, 20);
             this.DisplayMessage.Name = "DisplayMessage";
             this.DisplayMessage.Size = new System.Drawing.Size(10, 13);
             this.DisplayMessage.TabIndex = 1;
@@ -240,7 +241,7 @@
             // listBox_Results
             // 
             this.listBox_Results.FormattingEnabled = true;
-            this.listBox_Results.Location = new System.Drawing.Point(12, 215);
+            this.listBox_Results.Location = new System.Drawing.Point(12, 242);
             this.listBox_Results.Name = "listBox_Results";
             this.listBox_Results.Size = new System.Drawing.Size(932, 212);
             this.listBox_Results.TabIndex = 5;
@@ -255,6 +256,16 @@
             this.button_Search.UseVisualStyleBackColor = true;
             this.button_Search.Click += new System.EventHandler(this.Button_Search_Click);
             // 
+            // label_LatestUpdatedDate
+            // 
+            this.label_LatestUpdatedDate.AutoSize = true;
+            this.label_LatestUpdatedDate.Location = new System.Drawing.Point(12, 212);
+            this.label_LatestUpdatedDate.Name = "label_LatestUpdatedDate";
+            this.label_LatestUpdatedDate.Size = new System.Drawing.Size(10, 13);
+            this.label_LatestUpdatedDate.TabIndex = 1;
+            this.label_LatestUpdatedDate.Text = "-";
+            this.label_LatestUpdatedDate.Click += new System.EventHandler(this.Label1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,6 +276,7 @@
             this.Controls.Add(this.listBox_Results);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dateTimePicker_From);
+            this.Controls.Add(this.label_LatestUpdatedDate);
             this.Controls.Add(this.DisplayMessage);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -301,6 +313,7 @@
         private System.Windows.Forms.Label label_TotalConfirmed;
         private System.Windows.Forms.ListBox listBox_Results;
         private System.Windows.Forms.Button button_Search;
+        private System.Windows.Forms.Label label_LatestUpdatedDate;
     }
 }
 

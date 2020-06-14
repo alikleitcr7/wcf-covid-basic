@@ -15,9 +15,6 @@ namespace CovidServiceLibrary.DataContract
         [DataMember(Name = "Global")]
         public Global Global { get; set; }
 
-        [DataMember(Name = "Countries")]
-        public IList<CountryEntry> Countries { get; set; }
-
         [DataMember(Name = "Date")]
         public DateTime Date { get; set; }
     }

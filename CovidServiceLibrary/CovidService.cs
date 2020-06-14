@@ -51,44 +51,41 @@ namespace CovidServiceLibrary
             }
         }
 
-        public async Task<Global> GetGlobalCases()
+        public async Task<GlobalCases> GetGlobalCases()
         {
-            return (await Get<GlobalCases>("/summary"))?.Global;
+            return await Get<GlobalCases>("/summary");
         }
 
         public async Task<List<CountryCaseByDate>> GetByCountry(GetByCountryLiveParamters parameters)
         {
-            string path = $"/total/{parameters.CountryCode.ToLower()}/lebanon";
+            string path = $"/total/country/{parameters.CountryCode.ToLower()}";
 
+            List<CountryCaseByDate> results = await Get<List<CountryCaseByDate>>(path);
 
-            //List<string> query = new List<string>();
-
-            //if (parameters.From != null)
-            //{
-            //    //query.Add("from=" + parameters.From);
-
-            //    path += $"/date/{parameters.From}T00:00:00Z";
-
-            //    //query.Add("from=" + parameters.From);
-            //}
-
-            ////if (parameters.To != null)
-            ////{
-            ////    query.Add("to=" + parameters.To);
-            ////}
-
-            ////if (query.Count > 0)
-            ////{
-            ////    path += $"?{string.Join("&", query)}";
-            ////}
-
-            return (await Get<List<CountryCaseByDate>>(path))?.GroupBy(k => k.Date.Date).Select(k => new CountryCaseByDate()
+            if (results != null)
             {
-                Date = k.Key,
-                Confirmed = k.Sum(c=>c.Confirmed),
-                Recovered = k.Sum(c=>c.Recovered),
-                Deaths = k.Sum(c=>c.Deaths),
-            }).Take(40).ToList();
+                // filter from date
+                if (parameters.From != null && DateTime.TryParse(parameters.From, out DateTime fromDate))
+                {
+                    results = results.Where(k => k.Date >= fromDate).ToList();
+                }
+
+                // group by date only (since the results include date and time) and take the top 40
+
+                results = results.GroupBy(k => k.Date.Date)
+                                 .Select(k => new CountryCaseByDate()
+                                 {
+                                     Date = k.Key,
+                                     Confirmed = k.Sum(c => c.Confirmed),
+                                     Recovered = k.Sum(c => c.Recovered),
+                                     Deaths = k.Sum(c => c.Deaths),
+                                 })
+                                 .OrderByDescending(k => k.Date)
+                                 .Take(40)
+                                 .ToList();
+            }
+
+            return results;
         }
 
         public async Task<List<Country>> GetCountries()
