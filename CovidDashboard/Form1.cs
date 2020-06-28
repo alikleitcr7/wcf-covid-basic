@@ -57,7 +57,6 @@ namespace CovidDashboard
                     }
                 }
             });
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -156,6 +155,24 @@ namespace CovidDashboard
         private void Button_Search_Click(object sender, EventArgs e)
         {
             Country selectedCountry = comboBox_Countries.SelectedItem as Country;
+
+            // check text if no country selected
+            if (selectedCountry == null && !string.IsNullOrEmpty(comboBox_Countries.Text))
+            {
+                string countryInput = comboBox_Countries.Text;
+
+                // check if the country is in our list (maybe code or name)
+
+                foreach (Country country in comboBox_Countries.Items)
+                {
+                    if (country.CountryMember.Equals(countryInput, StringComparison.OrdinalIgnoreCase) || country.ISO2.Equals(countryInput, StringComparison.OrdinalIgnoreCase))
+                    {
+                        selectedCountry = country;
+                        break;
+                    }
+                }
+
+            }
 
             if (selectedCountry == null)
             {
